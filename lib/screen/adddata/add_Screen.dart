@@ -17,12 +17,11 @@ class _AddDataScreenState extends State<AddDataScreen> {
   TextEditingController txtname = TextEditingController();
   TextEditingController txtxQty = TextEditingController();
   TextEditingController txtprice = TextEditingController();
-  String? path="";
+  String? path;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
@@ -73,13 +72,13 @@ class _AddDataScreenState extends State<AddDataScreen> {
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          label: Text("ENTER Name "),
+                          label: Text("Product"),
                         ),
                         keyboardType: TextInputType.name,
                         controller: txtname,
                         validator: (value) {
                           if (value!.isEmpty || value == null) {
-                            return "This Feild Is Required";
+                            return "Enter Product Name ";
                           } else {
                             return null;
                           }
@@ -92,13 +91,13 @@ class _AddDataScreenState extends State<AddDataScreen> {
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          label: Text("ENTER Qty"),
+                          label: Text("Qty"),
                         ),
                         keyboardType: TextInputType.number,
                         controller: txtxQty,
                         validator: (value) {
                           if (value!.isEmpty || value == null) {
-                            return "This Feild Is Required";
+                            return "Enter QTY";
                           } else {
                             return null;
                           }
@@ -111,13 +110,13 @@ class _AddDataScreenState extends State<AddDataScreen> {
                         textInputAction: TextInputAction.done,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          label: Text("ENTER Price"),
+                          label: Text("Price"),
                         ),
                         keyboardType: TextInputType.number,
                         controller: txtprice,
                         validator: (value) {
                           if (value!.isEmpty || value == null) {
-                            return "This Feild Is Required";
+                            return "Enter Price";
                           } else {
                             return null;
                           }
@@ -135,7 +134,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                 onPressed: () {
                   if (formkey.currentState!.validate()) {
                     FocusManager.instance.primaryFocus?.unfocus();
-                    if (path != null) {
+                    if (!path!.isEmpty) {
                       Modal m1 = Modal(
                           product: txtname.text,
                           price: txtprice.text,
